@@ -327,17 +327,22 @@ return [
         [
             'text' => 'Department',
             'url'  => 'departments',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-sitemap',
         ],
         [
             'text' => 'Product',
             'url'  => 'products',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-cube',
         ], 
         [
             'text' => 'Position',
             'url'  => 'positions',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-universal-access',
+        ],
+        [
+            'text' => 'User Approval',
+            'url'  => 'user-approvals',
+            'icon' => 'fas fa-fw fa-key',
         ],
         // ['header' => 'account_settings'],
         // [
