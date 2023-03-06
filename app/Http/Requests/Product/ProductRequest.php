@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Product;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class StoreUserRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,9 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|unique:users,username',
             'name' => 'required',
-            'role' => 'in:root,admin_po,admin_approval,admin_mrv',
-            'department_id' => 'required',
-            'position_ids.*' => 'required',
-            'password' => 'required|min:8',
-            'confirm_password' => 'required|min:8|same:password',
-            'status' => 'required'
+            'uom' => 'required',
+            'unit_price' => 'required'
         ];
     }
 }

@@ -8,29 +8,29 @@
 
 @php
 $heads = [
-    'ID', 'Name', 'Email', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
+    'ID', 'Name', 'Username', 'Role', 'Department', 'Status', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
 ];
 
 function getBtn($user) {
   $btnEdit = '<a href="' . route('users.edit', ['user' => $user]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
                 <i class="fa fa-lg fa-fw fa-pen"></i>
             </a>';
-$btnDelete = '<form action= "' . route('users.destroy', ['user' => $user]) . '">
-              '. @csrf .'
-              '. @method('DELETE') .'
-                <a class="btn btn-xs btn-default text-danger mx-1" title="Delete">
-                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                </a>
-              </form>
-              ';
+// $btnDelete = '<form onSubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini?\')" class="d-inline" method="POST" action= "' . route('users.destroy', ['user' => $user]) . '">
+//               '. csrf_field() .'
+//               '. method_field("DELETE") .'
+//                 <button type="submit" class="btn btn-xs btn-default text-danger mx-1" title="Delete">
+//                     <i class="fa fa-lg fa-fw fa-trash"></i>
+//                 </button>
+//               </form>
+//               ';
               
-return $btnEdit . $btnDelete;
+return $btnEdit;
 }
 
 
 $data = array();
 foreach ($users as $user) {
-  array_push($data, [$user->id, $user->name, $user->email,  '<nobr>'.getBtn($user).'</nobr>']);
+  array_push($data, [$user->id, $user->name, $user->username, $user->role, $user->department->name, $user->is_active == 1 ? 'Active' : 'Inactive',  '<nobr>'.getBtn($user).'</nobr>']);
 }
 
 $config = [
@@ -66,5 +66,4 @@ $config = [
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
 @stop

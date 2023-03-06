@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_approvals', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->bigInteger('user_id')->unsigned();
+        Schema::create('positions', function (Blueprint $table) {
+            $table->id();
             $table->integer('level');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_approvals');
+        Schema::dropIfExists('positions');
     }
 };

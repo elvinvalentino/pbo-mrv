@@ -24,10 +24,14 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required',Rule::unique('users', 'email')->ignore($this->user->id) , 'email'],
+            'username' => ['required',Rule::unique('users', 'username')->ignore($this->user->id)],
             'name' => 'required',
+            'role' => 'in:root,admin_po,admin_approval,admin_mrv',
+            'department_id' => 'required',
+            'position_ids.*' => 'required',
             'password' => 'required|min:8',
-            'confirmPassword' => 'required|min:8|same:password',
+            'confirm_password' => 'required|min:8|same:password',
+            'status' => 'required'
         ];
     }
 }
