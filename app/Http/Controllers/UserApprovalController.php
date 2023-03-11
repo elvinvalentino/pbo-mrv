@@ -21,7 +21,7 @@ class UserApprovalController extends Controller
         foreach ($positions as $position) {
             $users = $position->users()->get()->toArray();
             array_push($datas, $users ?? []);
-            if(count($users) > 0) $rowLength = count($users);
+            if(count($users) > $rowLength) $rowLength = count($users);
         }
 
         return view('user-approvals/list', ['heads' => $heads, 'datas' => $datas, 'rowLength' => $rowLength]);
