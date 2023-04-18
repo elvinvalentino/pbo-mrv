@@ -339,6 +339,13 @@ return [
             'url'  => 'positions',
             'icon' => 'fas fa-fw fa-universal-access',
         ],
+        ['header' => 'Procurement'],
+        [
+            'text' => 'Request Order',
+            'url'  => 'request-orders',
+            'icon' => 'fas fa-fw fa-box-open',
+        ],
+        ['header' => 'Settings'],
         [
             'text' => 'User Approval',
             'url'  => 'user-approvals',

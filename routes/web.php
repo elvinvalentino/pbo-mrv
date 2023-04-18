@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RequestOrderController;
 use App\Http\Controllers\UserApprovalController;
 
 /*
@@ -27,6 +28,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/user-approvals', [UserApprovalController::class, 'index'])->name('user-approval');
+Route::prefix('/request-orders')->group(function() {
+    Route::get('/', [RequestOrderController::class, 'index'])->name('request-order');
+    Route::get('/create', [RequestOrderController::class, 'create'])->name('request-order.create');
+});
 Route::resources([
     'users' => UserController::class,
     'departments' => DepartmentController::class,
