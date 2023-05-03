@@ -8,14 +8,14 @@
 
 @php
 $heads = [
-    'ID', 'Total Items', 'Total Price', 'Requested At', 'Status', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
+    'ID','Status', 'Requested At', 'Total Items', 'Total Price', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
 ];
 
 function getBtn($data) {
-  $btnEdit = '<a href="' . route('products.edit', ['product' => $data]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
+  $btnEdit = '<a href="' . route('request-order.edit', ['product' => $data]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
                 <i class="fa fa-lg fa-fw fa-pen"></i>
             </a>';
-$btnDelete = '<form onSubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini?\')" class="d-inline" method="POST" action= "' . route('products.destroy', ['product' => $data]) . '">
+$btnShow = '<form onSubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini?\')" class="d-inline" method="POST" action= "' . route('products.destroy', ['product' => $data]) . '">
               '. csrf_field() .'
               '. method_field("DELETE") .'
                 <button type="submit" class="btn btn-xs btn-default text-danger mx-1" title="Delete">
@@ -24,13 +24,13 @@ $btnDelete = '<form onSubmit="return confirm(\'Apakah kamu yakin ingin menghapus
               </form>
               ';
               
-return $btnEdit . $btnDelete;
+return $btnEdit . $btnShow;
 }
 
 
 $data = array();
 foreach ($requestOrders as $requestOrder) {
-  array_push($data, [$requestOrder->id, $requstOrder->requestOrderDetails->count(), $requestOrder->total, $requestOrder->status]);
+  array_push($data, [ $requestOrder->id, $requestOrder->status, $requestOrder->requested_at, $requestOrder->requestOrderDetails->count(), $requestOrder->total]);
 }
 
 $config = [

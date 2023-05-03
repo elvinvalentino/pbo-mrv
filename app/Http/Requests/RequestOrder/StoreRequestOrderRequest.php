@@ -5,7 +5,7 @@ namespace App\Http\Requests\RequestOrder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CreateRequestOrderRequest extends FormRequest
+class StoreRequestOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class CreateRequestOrderRequest extends FormRequest
         return [
             // 'name' => 'required|string|max:255',
             // 'email' => 'required|email|max:255',
+            'user_id' => 'required',
             'products.*.id' => 'required',
             'products.*.quantity' => 'required|integer|min:1',
         ];

@@ -29,8 +29,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/user-approvals', [UserApprovalController::class, 'index'])->name('user-approval');
 Route::prefix('/request-orders')->group(function() {
-    Route::get('/', [RequestOrderController::class, 'index'])->name('request-order');
+    Route::get('/', [RequestOrderController::class, 'index'])->name('request-order.index');
     Route::get('/create', [RequestOrderController::class, 'create'])->name('request-order.create');
+    Route::post('/', [RequestOrderController::class, 'store'])->name('request-order.store');
+    Route::get('/{requestOrder}', [RequestOrderController::class, 'show'])->name('request-order.show');
+    Route::get('/{requestOrder}/edit', [RequestOrderController::class, 'edit'])->name('request-order.edit');
+    Route::put('/{requestOrder}', [RequestOrderController::class, 'update'])->name('request-order.update');
+    Route::delete('/{requestOrder}', [RequestOrderController::class, 'delete'])->name('request-order.delete');
 });
 Route::resources([
     'users' => UserController::class,
