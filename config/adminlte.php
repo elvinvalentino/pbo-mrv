@@ -341,9 +341,14 @@ return [
         ],
         ['header' => 'Procurement'],
         [
-            'text' => 'Request Order',
+            'text' => 'My Request Order',
             'url'  => 'request-orders',
             'icon' => 'fas fa-fw fa-box-open',
+        ],
+        [
+            'text' => 'Approval',
+            'url'  => 'approvals',
+            'icon' => 'fas fa-fw fa-handshake',
         ],
         ['header' => 'Settings'],
         [

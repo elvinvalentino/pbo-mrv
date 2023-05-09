@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-{{-- @section('plugins.Datatables', true) --}}
+@section('plugins.Datatables', true)
 @section('title', 'Dashboard')
 
 @section('content_header')
@@ -8,29 +8,25 @@
 
 @php
 $heads = [
-    'ID','Status', 'Requested At', 'Total Items', 'Total Price', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
+    'ID','Status', 'Requested At', 'Total Items', 'Expected Price', ['label' => 'Actions', 'no-export' => true, 'width' => 5]
 ];
 
 function getBtn($data) {
-  $btnEdit = '<a href="' . route('request-order.edit', ['product' => $data]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
-                <i class="fa fa-lg fa-fw fa-pen"></i>
-            </a>';
-$btnShow = '<form onSubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini?\')" class="d-inline" method="POST" action= "' . route('products.destroy', ['product' => $data]) . '">
-              '. csrf_field() .'
-              '. method_field("DELETE") .'
-                <button type="submit" class="btn btn-xs btn-default text-danger mx-1" title="Delete">
-                    <i class="fa fa-lg fa-fw fa-trash"></i>
-                </button>
-              </form>
+  // $btnEdit = '<a href="' . route('request-order.edit', ['product' => $data]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
+  //               <i class="fa fa-lg fa-fw fa-pen"></i>
+  //           </a>';
+$btnShow = '<a href="' . route('request-order.show', ['requestOrder' => $data]) . '" class="btn btn-xs btn-default text-primary mx-1" title="Edit">
+                <i class="fa fa-lg fa-fw fa-eye"></i>
+            </a>
               ';
               
-return $btnEdit . $btnShow;
+return $btnShow;
 }
 
 
 $data = array();
 foreach ($requestOrders as $requestOrder) {
-  array_push($data, [ $requestOrder->id, $requestOrder->status, $requestOrder->requested_at, $requestOrder->requestOrderDetails->count(), $requestOrder->total]);
+  array_push($data, [ $requestOrder->id, view('components.request-order.status-badge', ['status' => $requestOrder->status]), $requestOrder->requested_at, $requestOrder->requestOrderDetails->count(), $requestOrder->total,  '<nobr>'.getBtn($requestOrder).'</nobr>']);
 }
 
 $config = [

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('request_order_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->integer('level');
-            $table->enum('status', ['pending', 'approved']);
+            $table->enum('status', ['pending', 'approved', 'rejected']);
             $table->date('approved_at')->nullable();
             $table->timestamps();
 

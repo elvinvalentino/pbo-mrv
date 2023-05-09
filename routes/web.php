@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -36,6 +37,12 @@ Route::prefix('/request-orders')->group(function() {
     Route::get('/{requestOrder}/edit', [RequestOrderController::class, 'edit'])->name('request-order.edit');
     Route::put('/{requestOrder}', [RequestOrderController::class, 'update'])->name('request-order.update');
     Route::delete('/{requestOrder}', [RequestOrderController::class, 'delete'])->name('request-order.delete');
+});
+Route::prefix('/approvals')->group(function() {
+    Route::get('/', [ApprovalController::class, 'index'])->name('approval.index');
+    Route::get('/{requestOrderApproval}', [ApprovalController::class, 'show'])->name('approval.show');
+    Route::post('/{requestOrderApproval}/approve', [ApprovalController::class, 'approve'])->name('approval.approve');
+    Route::post('/{requestOrderApproval}/reject', [ApprovalController::class, 'reject'])->name('approval.reject');
 });
 Route::resources([
     'users' => UserController::class,

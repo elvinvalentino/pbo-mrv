@@ -11,7 +11,15 @@ class RequestOrder extends Model
 
     protected $guarded = [];
 
-    function requestOrderDetails() {
+    public function user() {
+      return $this->belongsTo(User::class);
+    }
+
+    public function requestOrderDetails() {
       return  $this->hasMany(RequestOrderDetail::class);
+    }
+
+    public function requestOrderApprovals() {
+      return $this->hasMany(RequestOrderApproval::class);
     }
 }

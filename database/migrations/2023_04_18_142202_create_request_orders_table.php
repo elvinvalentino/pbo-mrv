@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('request_orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->enum('status', ['open', 'closed', 'pending_approval']);
+            $table->enum('status', ['open', 'closed', 'pending_approval', 'rejected']);
             $table->date('requested_at');
             $table->integer('total');
             $table->timestamps();
