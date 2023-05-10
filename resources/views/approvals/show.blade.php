@@ -72,7 +72,7 @@
   </div>
 </div>
 
-@if($requestOrderApproval == 'pending')
+@if($requestOrderApproval->status == 'pending')
   <div class="d-flex justify-content-end">
     <button class="btn btn-danger mr-2" data-toggle="modal" data-target="#rejectModal">Reject</button>
     <button class="btn btn-success"  data-toggle="modal" data-target="{{$isMaxLevel == 1 ? '#approveModal' : '#approveModalUser'}}">Approve</button>
