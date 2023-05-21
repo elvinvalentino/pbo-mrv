@@ -291,11 +291,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -318,43 +318,65 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        ['header' => 'Master Data'],
+        [
+            'header' => 'Master Data',
+            'can' => 'root'
+        ],
         [
             'text' => 'User',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'root'
         ],
         [
             'text' => 'Department',
             'url'  => 'departments',
             'icon' => 'fas fa-fw fa-sitemap',
+            'can' => 'root'
         ],
         [
             'text' => 'Product',
             'url'  => 'products',
             'icon' => 'fas fa-fw fa-cube',
+            'can' => 'root'
         ], 
         [
             'text' => 'Position',
             'url'  => 'positions',
             'icon' => 'fas fa-fw fa-universal-access',
+            'can' => 'root'
         ],
-        ['header' => 'Procurement'],
+        [
+            'header' => 'Procurement',
+            'can' => ['root', 'admin_po', 'admin_mrv', 'admin_approval']
+        ],
+        [
+            'text' => 'Pre Order',
+            'url'  => 'pre-orders',
+            'icon' => 'fas fa-fw fa-box-open',
+            'can' => ['root', 'admin_po']
+        ],
         [
             'text' => 'My Request Order',
             'url'  => 'request-orders',
             'icon' => 'fas fa-fw fa-box-open',
+            'can' => ['root', 'admin_mrv']
         ],
         [
             'text' => 'Approval',
             'url'  => 'approvals',
             'icon' => 'fas fa-fw fa-handshake',
+            'can' => ['root', 'admin_approval']
         ],
-        ['header' => 'Settings'],
+        [
+            'header' => 'Settings',
+            'can' => ['root']
+        ],
         [
             'text' => 'User Approval',
             'url'  => 'user-approvals',
             'icon' => 'fas fa-fw fa-key',
+            'can' => ['root']
         ],
         // ['header' => 'account_settings'],
         // [

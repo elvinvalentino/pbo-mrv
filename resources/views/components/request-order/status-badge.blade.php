@@ -9,6 +9,11 @@
             Open
         </div>
         @break
+    @case('rejected')
+        <div class="badge badge-pill badge-danger">
+            Rejected
+        </div>
+        @break
     @default
         <div class="badge badge-pill badge-primary">
             {{$status}}

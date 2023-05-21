@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PreOrderController;
 use App\Http\Controllers\RequestOrderController;
 use App\Http\Controllers\UserApprovalController;
 
@@ -22,7 +23,7 @@ use App\Http\Controllers\UserApprovalController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -37,6 +38,10 @@ Route::prefix('/request-orders')->group(function() {
     Route::get('/{requestOrder}/edit', [RequestOrderController::class, 'edit'])->name('request-order.edit');
     Route::put('/{requestOrder}', [RequestOrderController::class, 'update'])->name('request-order.update');
     Route::delete('/{requestOrder}', [RequestOrderController::class, 'delete'])->name('request-order.delete');
+});
+Route::prefix('/pre-orders')->group(function() {
+    Route::get('/', [PreOrderController::class, 'index'])->name('pre-order.index');
+    Route::get('/{requestOrder}', [PreOrderController::class, 'show'])->name('pre-order.show');
 });
 Route::prefix('/approvals')->group(function() {
     Route::get('/', [ApprovalController::class, 'index'])->name('approval.index');
