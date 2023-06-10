@@ -30,7 +30,7 @@ return $btnEdit;
 
 $data = array();
 foreach ($users as $user) {
-  array_push($data, [$user->id, $user->name, $user->username, $user->role, $user->department->name, $user->is_active == 1 ? 'Active' : 'Inactive',  '<nobr>'.getBtn($user).'</nobr>']);
+  array_push($data, [$user->id, $user->name, $user->username, view('components.user.role-badge', ['role' => $user->role]), $user->department->name, $user->is_active == 1 ? 'Active' : 'Inactive',  '<nobr>'.getBtn($user).'</nobr>']);
 }
 
 $config = [
